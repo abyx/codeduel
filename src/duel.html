@@ -1,0 +1,21 @@
+{% extends "template.html" %}
+{% block content %}
+   <h2>Which is the better snippet?</h2>
+   
+   <form action="/" method="post">
+	<input type="hidden" name="winning" value="{{ snippet_one.key }}"/>
+   	<div class="snippet_name">{{snippet_one.title}}</div>
+   	<div class="code">
+   		{{ snippet_one.code }}
+   	</div>
+   </form>
+   
+   <form action="/" method="post">
+	<input type="hidden" name="winning" value="{{ snippet_two.key }}"/>
+   	<div class="snippet_name">{{snippet_two.title}}</div>
+   	<div class="code">
+   		{{ snippet_two.code }}
+   	</div>
+   </form>
+   
+{% endblock %}

@@ -1,11 +1,13 @@
 import os
 from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
+from models import *
 
 class DuelPage(webapp.RequestHandler):
     def get(self):
         template_values = {
-            'greetings': 'hello',
+            'snippet_one': Snippet.all()[0],
+            'snippet_two': Snippet.all()[1],
             'url': 'http://www.google.com',
             'url_linktext': 'google',
         }
