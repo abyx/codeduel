@@ -1,7 +1,10 @@
 <html>
   <body>
+    <h1>Top Snippets</h1>
+    <ol>
     {% for snippet in snippets %}
-        {{ snippet.title }}<br>
+        <li>{{ snippet.title }} - {{ snippet.rank }}</li>
     {% endfor %}
+    </ol>
   </body>
 </html>
