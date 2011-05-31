@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <title>CodeDuel</title>
+  </head>
+
+  <body>
+    <div id="sidebar">
+      <ul>
+        <li><a href="/">Vote (home)</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/snippet">Snippet Score</a></li>
+      </ul>
+    </div>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
