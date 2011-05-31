@@ -1,21 +1,47 @@
 {% extends "template.html" %}
 {% block content %}
    <h2>Which is the better snippet?</h2>
+   <style type="text/css">
+    .candidate{
+    	width:300px;
+    	background: grey;
+    	float:left;
+    	margin:0 100px;
+    	padding:20px;
+    	border-radius:5px;
+    }
+    .candidate .snippet_name{
+    	font-weight:bold;
+    	font-size:20px;
+    	color:#00FF00;
+    	font-family: sans-serif;
+    	margin-bottom:5px;
+    }
+    .candidate .code {
+    	background: white;
+    	padding:10px 5px;
+    	
+    }
+   </style>
    
-   <form action="/" method="post">
+   <form action="/" method="post" class="candidate left" >
 	<input type="hidden" name="winning" value="{{ snippet_one.key }}"/>
+	<input type="hidden" name="losing" value="{{ snippet_two.key }}"/>
    	<div class="snippet_name">{{snippet_one.title}}</div>
    	<div class="code">
    		{{ snippet_one.code }}
    	</div>
+   	<input type="submit" value="Vote">
    </form>
    
-   <form action="/" method="post">
+   <form action="/" method="post" class="candidate right">
 	<input type="hidden" name="winning" value="{{ snippet_two.key }}"/>
+	<input type="hidden" name="losing" value="{{ snippet_one.key }}"/>
    	<div class="snippet_name">{{snippet_two.title}}</div>
    	<div class="code">
    		{{ snippet_two.code }}
    	</div>
+   	<input type="submit" value="Vote">
    </form>
    
 {% endblock %}

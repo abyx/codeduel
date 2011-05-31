@@ -14,3 +14,7 @@ class DuelPage(webapp.RequestHandler):
 
         path = os.path.join(os.path.dirname(__file__), 'duel.html')
         self.response.out.write(template.render(path, template_values))
+        
+    def post(self):
+        self.request.get('winner')
+        self.request.get('loser')
