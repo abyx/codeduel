@@ -1,5 +1,6 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
+from google.appengine.api import users
 from models import *
 import os
 from random import shuffle
@@ -25,6 +26,6 @@ class DuelPage(webapp.RequestHandler):
         winner = Snippet.get(self.request.get('winning'))
         loser = Snippet.get(self.request.get('losing'))
         Vote(winner=winner,loser=loser).put()
-        winner.rank += 1
+        winner.rank =  (winner.rank or 0 ) + 1
         winner.put()
         self.redirect("/")
