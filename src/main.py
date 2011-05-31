@@ -1,9 +1,10 @@
-import os
-from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from src.submit import SubmitPage
 from src.snippet import SnippetPage
+from src.submit import SubmitPage
+from src.top import TopPage
+import os
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -20,7 +21,8 @@ class MainPage(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/submit', SubmitPage),
-                                      ('/snippet', SnippetPage)],
+                                      ('/snippet', SnippetPage),
+                                      ('/top', TopPage)],
                                      debug=True)
 
 def main():
