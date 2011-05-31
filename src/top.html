@@ -1,10 +1,9 @@
-<html>
-  <body>
-    <h1>Top Snippets</h1>
+{% extends "template.html" %}
+{% block content %}
+    <h1>Top {{ top_num }} Snippets</h1>
     <ol>
     {% for snippet in snippets %}
         <li>{{ snippet.title }} - {{ snippet.rank }}</li>
     {% endfor %}
     </ol>
-  </body>
-</html>
+{% endblock %}
