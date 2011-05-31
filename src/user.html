@@ -1,0 +1,19 @@
+{% extends "template.html" %}
+{% block content %}
+    <h1>{{ user.nickname }}</h1>
+	<b>Rank: </b> {{ user.rank }}
+
+    <h2>Snippets Submitted</h2>
+	<ul>    
+	    {% for snippet in user.snippets %}
+	       <li><a href="/snippet?id={{ snippet.key }}">{{ snippet.title }}</a></li>
+        {% endfor %}
+    </ul>
+	
+	<h2>Tags</h2>
+	<ul>
+        {% for tag in user.tags %}
+           {{ tag.name }}
+        {% endfor %}
+	</ul>
+{% endblock %}

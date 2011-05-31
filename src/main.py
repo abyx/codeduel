@@ -6,6 +6,7 @@ from src.duel_page import DuelPage
 from src.submit import SubmitPage
 from src.top import TopPage
 import os
+from src.user import UserPage
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -23,6 +24,7 @@ application = webapp.WSGIApplication(
                                      [('/', DuelPage),
                                       ('/submit', SubmitPage),
                                       ('/snippet', SnippetPage),
+                                      ('/user', UserPage),
                                       ('/top', TopPage)],
                                      debug=True)
 
