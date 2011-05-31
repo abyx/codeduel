@@ -6,5 +6,7 @@ api_version: 1
 handlers:
 - url: /stylesheets
   static_dir: src/stylesheets
+- url: /js
+  static_dir: src/js
 - url: /.*
   script: src/main.py
