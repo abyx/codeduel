@@ -1,12 +1,20 @@
+import os
+from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from src.submit import SubmitPage
 from src.snippet import SnippetPage
 
 class MainPage(webapp.RequestHandler):
-    def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('Hello, webapp World!')
+  def get(self):
+    template_values = {
+        'greetings': 'hello',
+        'url': 'http://www.google.com',
+        'url_linktext': 'google',
+        }
+
+    path = os.path.join(os.path.dirname(__file__), 'main.html')
+    self.response.out.write(template.render(path, template_values))
 
 
 application = webapp.WSGIApplication(
