@@ -1,7 +1,15 @@
 {% extends "template.html" %}
 {% block content %}
     <h1>{{ snippet.title }}</h1>
-	<b>Rank: <b> {{ snippet.rank }}
+	<b>Rank: <b> {{ snippet.rank }}<br>
+	{% if snippets.tags %}
+		<b>Tags: </b>
+		<ul>
+	        {% for tag in snippets.tags %}
+			<li> {{ tag.name }} </li>
+	        {% endfor %}
+		</ul>
+	{% endif %}
 	<div class="code">
 	   {{ snippet.code }}
 	</div>
