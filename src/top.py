@@ -9,7 +9,8 @@ class TopPage(webapp.RequestHandler):
 
     def get(self):
         template_values = {
-                          'snippets': self._get_sorted_snippets()
+                           'top_num' : LIMIT_TOP_RANKS,
+                           'snippets': self._get_sorted_snippets()
                           }
 
         path = os.path.join(os.path.dirname(__file__), 'top.html')
