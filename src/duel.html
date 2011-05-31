@@ -5,11 +5,18 @@
     .candidate{
     	width:300px;
     	background: grey;
-    	float:left;
-    	margin:0 100px;
+    	margin:0 50px;
     	padding:20px;
     	border-radius:5px;
     }
+    .candidate.left{
+    	float:left;
+    }
+    .candidate.right{
+    	float:right;
+    }
+    	
+    	
     .candidate .snippet_name{
     	font-weight:bold;
     	font-size:20px;
@@ -22,7 +29,9 @@
     	padding:10px 5px;
     	
     }
+    
    </style>
+   <div style="overflow:hidden;">
    
    <form action="/" method="post" class="candidate left" >
 	<input type="hidden" name="winning" value="{{ snippet_one.key }}"/>
@@ -43,5 +52,6 @@
    	</div>
    	<input type="submit" value="Vote">
    </form>
+   </div>
    
 {% endblock %}

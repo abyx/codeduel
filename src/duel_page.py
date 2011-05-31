@@ -1,7 +1,7 @@
-import os
-from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from models import *
+import os
 
 class DuelPage(webapp.RequestHandler):
     def get(self):
@@ -16,5 +16,10 @@ class DuelPage(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
         
     def post(self):
-        self.request.get('winner')
-        self.request.get('loser')
+        winner_key = self.request.get('winner')
+        loser_key = self.request.get('loser')
+        winner = Snippet.get(winner_key)
+        loser = Snippet.get(loser_key)
+        Vote(winner=winner,loser=loser).put()
+        winner.rank = winner.rank + 1
+        winner.put()
