@@ -1,5 +1,14 @@
 {% extends "template.html" %}
 {% block content %}
     Please submit here!
+
+<form method="POST">
+<input name="submitter" readonly="yes" type="text" value="{{ user }}"/>
+<input name="title" type="text" />
+<textarea name="code" type="text" ></textarea>
+<input name="tags" type="text" />
+<input type="submit" value="Submit" />
+</form>
+	<p />
     <a href="{{ url }}">{{ url_linktext }}</a>
 {% endblock %}
