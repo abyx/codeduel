@@ -3,7 +3,7 @@
     <h1>Top {{ top_num }} Snippets</h1>
     <ol>
     {% for snippet in snippets %}
-        <li>{{ snippet.title }} - {{ snippet.rank }}</li>
+        <li><a href="/snippet?id={{ snippet.key }}">{{ snippet.title }}</a> - {{ snippet.rank }}</li>
     {% endfor %}
     </ol>
 {% endblock %}

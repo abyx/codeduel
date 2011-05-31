@@ -1,9 +1,8 @@
 {% extends "template.html" %}
 {% block content %}
-    Nice snippet
-    <a href="{{ url }}">{{ url_linktext }}</a>
+    <h1>{{ snippet.title }}</h1>
+	<b>Rank: <b> {{ snippet.rank }}
+	<div class="code">
+	   {{ snippet.code }}
+	</div>
 {% endblock %}
-<html>
-  <body>
-  </body>
-</html>
