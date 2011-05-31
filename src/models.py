@@ -19,8 +19,8 @@ class Tag(db.Model):
     name = db.StringProperty()
 
 class SnippetTag(db.Model):
+    tag = db.ReferenceProperty(Tag,required=True,collection_name='snippets')
     snippet = db.ReferenceProperty(Snippet,required=True,collection_name='tags')
-    tags = db.ReferenceProperty(Tag,required=True,collection_name='snippets')
 
 class Vote(db.Model):
     winner = db.ReferenceProperty(Snippet,collection_name="winning_votes")
