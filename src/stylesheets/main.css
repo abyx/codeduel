@@ -24,9 +24,11 @@ a{
   float: right;
   padding: 20pt;
 }
-h2{
+
+h1{
   color:#5fba3d;
   font-family:monospace, prestige;
+  padding: 15pt;
 }
 
 img{
