@@ -17,6 +17,6 @@ class TopPage(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
     
     def _get_sorted_snippets(self):
-        query = Snippet.all().order("rank")
+        query = Snippet.all().order("-rank")
         return query.fetch(limit = LIMIT_TOP_RANKS)
 

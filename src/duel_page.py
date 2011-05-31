@@ -2,12 +2,18 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from models import *
 import os
+from random import shuffle
 
 class DuelPage(webapp.RequestHandler):
     def get(self):
+        
+        all_snippets = list(Snippet.all())
+        shuffle(all_snippets)
+        
+        
         template_values = {
-            'snippet_one': Snippet.all()[0],
-            'snippet_two': Snippet.all()[1],
+            'snippet_one': all_snippets[0],
+            'snippet_two': all_snippets[1],
             'url': 'http://www.google.com',
             'url_linktext': 'google',
         }
@@ -16,10 +22,9 @@ class DuelPage(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
         
     def post(self):
-        winner_key = self.request.get('winner')
-        loser_key = self.request.get('loser')
-        winner = Snippet.get(winner_key)
-        loser = Snippet.get(loser_key)
+        winner = Snippet.get(self.request.get('winning'))
+        loser = Snippet.get(self.request.get('losing'))
         Vote(winner=winner,loser=loser).put()
-        winner.rank = winner.rank + 1
+        winner.rank += 1
         winner.put()
+        self.redirect("/")
