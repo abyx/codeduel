@@ -11,6 +11,9 @@
 <!-- (tags don't work yet)            <b>Tags: </b><input name="tags" type="text" /><br> -->
             <input type="submit" value="Submit" />
         </form>
+        <p />
+        Not {{ user.nickname }} ? Click to <a href="{{ logout_url }}">logout</a>
+        
     {% else %}
         You must <a href="{{ login_url }}">login</a> to submit.
     {% endif %} 

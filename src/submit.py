@@ -8,12 +8,14 @@ class SubmitPage(webapp.RequestHandler):
     def get(self):
         user = users.get_current_user()
         login_url = None
+        logout_url = users.create_logout_url("/submit")
         if user is None:
-            login_url = users.create_login_url("/login")
+            login_url = users.create_login_url("/submit")
 
         template_values = {
                          'user': user,
-                         'login_url': login_url
+                         'login_url': login_url,
+                         'logout_url': logout_url
                         }
 
         path = os.path.join(os.path.dirname(__file__), 'submit.html')
