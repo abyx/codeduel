@@ -31,7 +31,7 @@ class SubmitPage(webapp.RequestHandler):
         
         tags = self.request.POST.get(u"tags")
         
-        if len(tags.strip()) > 0:
+        if tags is not None and len(tags.strip()) > 0:
             for tag in tags.split():
                 tag_obj = Tag(name=tag)
                 tag_obj.put()
