@@ -20,7 +20,7 @@ class UserDisplay(object):
     @property
     def rank(self):
         if len(self._snippets) > 0:
-            return sum([s.rank for s in self._snippets]) / len(self._snippets)
+            return sum([s.rank for s in self._snippets if s.rank is not None]) / len(self._snippets)
         
         return 0
 
@@ -28,7 +28,7 @@ class UserDisplay(object):
     def tags(self):
         tags = set()
         for s in self._snippets:
-            tags.update(s.tags)
+            tags.update(s.tags())
         
         return tags 
 
@@ -38,19 +38,24 @@ class UserPage(webapp.RequestHandler):
                            'user': self._get_user(),
                            }
 
-        path = os.path.join(os.path.dirname(__file__), 'snippet.html')
+        path = os.path.join(os.path.dirname(__file__), 'user.html')
         self.response.out.write(template.render(path, template_values))
 
 
     def _get_all_users(self):
         all_snips = Snippet.all()
-        return dict((s.submitter.nickname, s.submitter) for s in all_snips)
+        return dict((str(s.submitter.user_id()), s.submitter) for s in all_snips if s.submitter is not None)
     
-    def _get_snippets_for_nick(self, nickname):
+    def _get_snippets_for_id(self, user_id):
         all_snips = Snippet.all()
-        return [s for s in all_snips if s.submitter.nickname == nickname]
+        return [s for s in all_snips if s.submitter is not None and s.submitter.user_id() == user_id]
 
     def _get_user(self):
         users = self._get_all_users()
-        nickname = users[self.request.get("nickname")]
-        return UserDisplay(nickname, self._get_snippets_for_nick(nickname))
+        user_id = str(self.request.get("user_id"))
+        
+        if user_id in users:
+            user = users[user_id]
+            return UserDisplay(user, self._get_snippets_for_id(user_id))
+        else:
+            return None

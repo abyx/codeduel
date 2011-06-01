@@ -1,14 +1,17 @@
 {% extends "template.html" %}
 {% block content %}
-    Please submit here!
+<h1>Submit Your Code Here</h1>
 
-<form method="POST">
-<input name="submitter" readonly="yes" type="text" value="{{ user }}"/>
-<input name="title" type="text" />
-<textarea name="code" type="text" ></textarea>
-<input name="tags" type="text" />
-<input type="submit" value="Submit" />
-</form>
-	<p />
-    <a href="{{ url }}">{{ url_linktext }}</a>
+    {% if user %}
+        <form method="POST">
+            <b>User: </b> <input name="submitter" readonly="yes" type="text" value="{{ user.nickname }}"/><br>
+            <b>Snippet Title: </b><input name="title" type="text" /><br>
+            <b>Snippet Code: </b><br>
+            <textarea name="code" type="text" ></textarea><br>
+<!-- (tags don't work yet)            <b>Tags: </b><input name="tags" type="text" /><br> -->
+            <input type="submit" value="Submit" />
+        </form>
+    {% else %}
+        You must <a href="{{ login_url }}">login</a> to submit.
+    {% endif %} 
 {% endblock %}

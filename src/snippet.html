@@ -1,15 +1,21 @@
 {% extends "template.html" %}
 {% block content %}
     <h1>{{ snippet.title }}</h1>
+	{% if snippet.submitter %}
+	<b>Submitter: </b> <a href="/user?user_id={{ snippet.submitter.user_id }}">{{ snippet.submitter.nickname }}</a><br>
+	{% endif %}
 	<b>Rank: <b> {{ snippet.rank }}<br>
-	{% if snippets.tags %}
+
+<!-- (tags don't work yet)  
+	{% if snippet.tags %}
 		<b>Tags: </b>
 		<ul>
 	        {% for tag in snippets.tags %}
 			<li> {{ tag.name }} </li>
 	        {% endfor %}
 		</ul>
-        {% endif %}
+    {% endif %}
+-->
 	<div class="candidate">
 	  <div class="code">
             <pre class="prettyprint">{{ snippet.code }}</pre>

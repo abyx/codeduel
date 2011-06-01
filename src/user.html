@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 {% block content %}
     <h1>{{ user.nickname }}</h1>
-	<b>Rank: </b> {{ user.rank }}
+	<b>Rank: </b> {{ user.rank }}<br>
 
     <h2>Snippets Submitted</h2>
 	<ul>    
@@ -9,11 +9,13 @@
 	       <li><a href="/snippet?id={{ snippet.key }}">{{ snippet.title }}</a></li>
         {% endfor %}
     </ul>
-	
+
+<!-- (tags don't work yet)	
 	<h2>Tags</h2>
 	<ul>
         {% for tag in user.tags %}
            {{ tag.name }}
         {% endfor %}
 	</ul>
+-->
 {% endblock %}
